@@ -1,0 +1,34 @@
+from pathlib import Path
+
+import cv2
+import matplotlib.pyplot as plt
+
+
+def show_samples(dataset_path: Path):
+
+    manchester = dataset_path / "M11.jpg"
+    chelsea = dataset_path / "c10.jpg"
+
+    img1 = cv2.cvtColor(
+        cv2.imread(str(manchester)),
+        cv2.COLOR_BGR2RGB,
+    )
+
+    img2 = cv2.cvtColor(
+        cv2.imread(str(chelsea)),
+        cv2.COLOR_BGR2RGB,
+    )
+
+    fig, ax = plt.subplots(1, 2, figsize=(10, 5))
+
+    ax[0].imshow(img1)
+    ax[0].set_title("Manchester")
+
+    ax[1].imshow(img2)
+    ax[1].set_title("Chelsea")
+
+    for a in ax:
+        a.axis("off")
+
+    plt.tight_layout()
+    plt.show()
